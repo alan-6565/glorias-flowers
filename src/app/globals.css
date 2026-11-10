@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* Ivory and dusty rose for the light sections, burgundy for the dramatic
+   ones, and a touch of gold from the crowns and butterflies she uses. */
+@theme {
+  --color-ivory: #f8f2eb;
+  --color-blush: #efdcd6;
+  --color-rose: #b8706a;
+  --color-rose-dark: #8f4d48;
+  --color-wine: #5c1520;
+  --color-wine-deep: #2b0a10;
+  --color-gold: #c9a56c;
+  --color-ink: #2a1a1c;
+
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-script: var(--font-pinyon), cursive;
+  --font-sans: var(--font-jost), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-blush);
+  color: var(--color-wine);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* Small-caps labels used across the site */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+/* Film grain over everything, very faint */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Arched photo frame, like a shop window */
+.arch {
+  border-radius: 999px 999px 1.25rem 1.25rem;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Heading lines rise out of a mask (set up by Motion.tsx) */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    animation: none;
+  }
+}
+
+/* Opening curtain: the name writes in, then the curtain lifts. CSS only, so
+   the page never stays hidden if scripts fail. */
+@keyframes curtain {
+  0%, 70% { transform: translateY(0); }
+  100% { transform: translateY(-100%); visibility: hidden; }
+}
+@keyframes ink {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes rule {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.curtain {
+  animation: curtain 2.3s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+.curtain-name {
+  animation: ink 1.2s cubic-bezier(0.6, 0, 0.3, 1) 0.15s both;
+}
+.curtain-rule {
+  transform-origin: left;
+  animation: rule 1.3s cubic-bezier(0.6, 0, 0.3, 1) 0.3s both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .curtain {
+    display: none;
+  }
+}
