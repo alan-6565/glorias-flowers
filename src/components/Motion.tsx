@@ -45,6 +45,8 @@ export function Motion() {
         const tl = gsap.timeline({ delay: hero ? 1.4 : 0, scrollTrigger: hero ? undefined : { trigger: frame, start: "top 85%", once: true } });
         tl.fromTo(frame, { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "expo.inOut" });
         if (img) tl.fromTo(img, { scale: 1.25 }, { scale: 1, duration: 1.8, ease: "expo.out" }, 0.2);
+        // Drop the mask once it's open, so frames drawn outside the photo show
+        tl.set(frame, { clearProps: "clipPath" });
       });
 
       gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {

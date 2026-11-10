@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useCart } from "@/components/Cart";
+import type { Variant } from "@/components/Site";
 
 /** Sits on the dark hero, then turns ivory once you scroll */
-export function Nav() {
+export function Nav({ variant }: { variant: Variant }) {
   const { items, setOpen } = useCart();
   const [solid, setSolid] = useState(false);
   const count = items.reduce((n, i) => n + i.qty, 0);
@@ -30,10 +32,15 @@ export function Nav() {
           <a href="#visitanos" className="hover:opacity-60">Visítanos</a>
         </div>
         <div className="flex items-center gap-4">
+          {/* Flip between the two looks */}
+          <div className="eyebrow hidden items-center gap-1 rounded-full border border-current/30 p-1 sm:flex">
+            <Link href="/" aria-current={variant === "clasica" ? "page" : undefined} className={`rounded-full px-3 py-1 ${variant === "clasica" ? "bg-current/15" : "opacity-60 hover:opacity-100"}`}>Clásica</Link>
+            <Link href="/pink" aria-current={variant === "rosa" ? "page" : undefined} className={`rounded-full px-3 py-1 ${variant === "rosa" ? "bg-current/15" : "opacity-60 hover:opacity-100"}`}>Rosa</Link>
+          </div>
           <button onClick={() => setOpen(true)} className="eyebrow cursor-pointer hover:opacity-60">
             Carrito ({count})
           </button>
-          <a href="#ramos" className={`eyebrow hidden px-5 py-3 transition-colors sm:inline-block ${solid ? "bg-wine text-ivory hover:bg-rose-dark" : "bg-ivory text-wine hover:bg-blush"}`}>
+          <a href="#ramos" className={`eyebrow hidden px-5 py-3 transition-colors xl:inline-block ${solid ? "bg-wine text-ivory hover:bg-rose-dark" : "bg-ivory text-wine hover:bg-blush"}`}>
             Ordenar
           </a>
         </div>

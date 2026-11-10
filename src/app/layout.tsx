@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Jost, Pinyon_Script } from "next/font/google";
-import { CartProvider } from "@/components/Cart";
 import "./globals.css";
 
 const serif = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"] });
@@ -16,9 +15,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     // Font variables live on <html> so the theme's font tokens can see them
     <html lang="es" className={`${serif.variable} ${script.variable} ${sans.variable}`}>
-      <body className="bg-ivory font-sans text-ink antialiased">
-        <CartProvider>{children}</CartProvider>
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

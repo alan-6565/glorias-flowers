@@ -102,3 +102,24 @@
     display: none;
   }
 }
+
+/* ---------- Versión rosa (/pink) ----------
+   Same page, brighter: blush backgrounds with raspberry lettering like her
+   flyer and price list, and strawberry-pink where the classic one is burgundy. */
+[data-theme="rosa"] {
+  --color-ivory: #fff3f6;
+  --color-blush: #fcd6e0;
+  --color-rose: #e0577a;
+  --color-rose-dark: #b81d47;
+  --color-wine: #cf325b;
+  --color-wine-deep: #b5193f;
+  --color-gold: #ffd9b8;
+  --color-ink: #6a1230;
+}
+[data-theme="rosa"] .grain {
+  display: none;
+}
+/* Thin double frame around photos, like the boxes on her price list */
+[data-theme="rosa"] .arch {
+  box-shadow: 0 0 0 1px var(--color-rose), 0 0 0 9px var(--color-ivory), 0 0 0 10px var(--color-rose);
+}
