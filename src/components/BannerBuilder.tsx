@@ -88,7 +88,7 @@ export function BannerBuilder() {
         <button
           type="button"
           data-magnetic
-          onClick={() => add({ key: `banner-${size.roses}-${ribbon.id}-${shown}`, name: `${size.roses} rosas con banner`, detail: `Banner ${ribbon.label.toLowerCase()}: “${shown}”`, price: size.price, image: `/img/rosas-${size.roses}.webp` })}
+          onClick={() => add({ key: `banner-${size.roses}-${ribbon.id}-${shown}`, name: `${size.roses} rosas con banner`, detail: `Banner ${ribbon.label.toLowerCase()}: “${shown}”`, price: size.price, image: `/img/rosas-${size.roses}.webp`, banner: shown, ribbon: ribbon.label })}
           className="eyebrow mt-10 w-full cursor-pointer bg-wine py-5 text-ivory transition-colors hover:bg-rose-dark"
         >
           Agregar al carrito

@@ -26,6 +26,7 @@ export function Nav({ variant }: { variant: Variant }) {
         </a>
         <div className="eyebrow hidden items-center gap-8 lg:flex">
           <a href="#ramos" className="hover:opacity-60">Ramos</a>
+          <a href="#entrega" className="hover:opacity-60">Entrega</a>
           <a href="#colecciones" className="hover:opacity-60">Colecciones</a>
           <a href="#perfumes" className="hover:opacity-60">Perfumes</a>
           <a href="#pedido" className="hover:opacity-60">Pedido especial</a>

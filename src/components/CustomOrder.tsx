@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { occasions } from "@/lib/data";
+import { addSpecial } from "@/lib/demo-store";
 
 const field = "w-full border-b border-ivory/30 bg-transparent py-3 text-ivory placeholder:text-ivory/40 outline-none focus:border-gold";
 const label = "eyebrow text-ivory/60";
@@ -26,21 +27,25 @@ export function CustomOrder() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        // Hand the request to the dashboard demo (saved in this browser only)
+        const f = new FormData(e.currentTarget);
+        const v = (k: string) => String(f.get(k) ?? "").trim();
+        addSpecial({ name: v("name"), phone: v("phone"), occasion: v("occasion") || "Otra", date: v("date"), mode: how, address: v("address") || undefined, idea: v("idea") });
         setSent(true);
       }}
       className="grid gap-8 sm:grid-cols-2"
     >
       <label className="block">
         <span className={label}>Tu nombre</span>
-        <input required className={field} placeholder="Nombre completo" autoComplete="name" />
+        <input required name="name" className={field} placeholder="Nombre completo" autoComplete="name" />
       </label>
       <label className="block">
         <span className={label}>Teléfono</span>
-        <input required type="tel" className={field} placeholder="(510) 000-0000" autoComplete="tel" />
+        <input required name="phone" type="tel" className={field} placeholder="(510) 000-0000" autoComplete="tel" />
       </label>
       <label className="block">
         <span className={label}>Ocasión</span>
-        <select className={`${field} cursor-pointer`} defaultValue="">
+        <select name="occasion" className={`${field} cursor-pointer`} defaultValue="">
           <option value="" disabled className="text-ink">Escoge una</option>
           {occasions.map((o) => (
             <option key={o} className="text-ink">{o}</option>
@@ -50,7 +55,7 @@ export function CustomOrder() {
       </label>
       <label className="block">
         <span className={label}>Fecha</span>
-        <input type="date" className={`${field} [color-scheme:dark]`} />
+        <input name="date" type="date" className={`${field} [color-scheme:dark]`} />
       </label>
       <div className="sm:col-span-2">
         <span className={label}>Entrega</span>
@@ -67,9 +72,15 @@ export function CustomOrder() {
           ))}
         </div>
       </div>
+      {how === "delivery" && (
+        <label className="block sm:col-span-2">
+          <span className={label}>Dirección de entrega</span>
+          <input required name="address" className={field} placeholder="Calle, número, ciudad y código postal" autoComplete="street-address" />
+        </label>
+      )}
       <label className="block sm:col-span-2">
         <span className={label}>Cuéntanos tu idea</span>
-        <textarea rows={3} className={`${field} resize-none`} placeholder="Colores, flores, banner, peluche, presupuesto…" />
+        <textarea name="idea" rows={3} className={`${field} resize-none`} placeholder="Colores, flores, banner, peluche, presupuesto…" />
       </label>
       <button type="submit" data-magnetic className="eyebrow cursor-pointer bg-ivory py-5 text-wine transition-colors hover:bg-gold sm:col-span-2">
         Enviar mi idea

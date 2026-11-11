@@ -34,3 +34,26 @@ export const collections = [
 ];
 
 export const occasions = ["Cumpleaños", "Aniversarios", "Propuestas", "Quinceañeras", "Día de las Madres", "San Valentín", "Graduaciones", "Día del Padre"];
+
+/** Ordering: pickup at the shop or delivery nearby. Zones, fees and times are
+ *  placeholders until the shop confirms them. */
+export const deliveryZones = [
+  { zips: ["94806"], area: "San Pablo", fee: 10 },
+  { zips: ["94801", "94803", "94804", "94805"], area: "Richmond y El Sobrante", fee: 15 },
+  { zips: ["94530"], area: "El Cerrito", fee: 20 },
+  { zips: ["94564"], area: "Pinole", fee: 20 },
+  { zips: ["94547"], area: "Hercules", fee: 25 },
+];
+
+/** Pickup times, by the hour (24h clock) */
+export const pickupHours = [10, 11, 12, 13, 14, 15, 16, 17, 18];
+
+/** Delivery windows, by starting and ending hour */
+export const deliveryWindows = [
+  { start: 10, end: 13 },
+  { start: 13, end: 16 },
+  { start: 16, end: 19 },
+];
+
+/** Orders for today need this many hours to get ready */
+export const prepHours = 2;

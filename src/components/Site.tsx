@@ -5,6 +5,7 @@ import { Nav } from "@/components/Nav";
 import { BannerBuilder } from "@/components/BannerBuilder";
 import { CustomOrder } from "@/components/CustomOrder";
 import { CartProvider } from "@/components/Cart";
+import { OrderWays } from "@/components/OrderWays";
 
 // All photos are the shop's own, cropped from its Instagram. They're small,
 // so the layout keeps them at moderate sizes until better ones arrive.
@@ -107,6 +108,25 @@ function Ramos() {
     <section id="ramos" className="bg-blush/60 py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <BannerBuilder />
+      </div>
+    </section>
+  );
+}
+
+function Entrega() {
+  return (
+    <section id="entrega" className="bg-ivory py-28">
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        <div className="max-w-2xl">
+          <p data-fade className="eyebrow text-rose">Ordena en línea</p>
+          <h2 className="mt-5 font-serif text-[clamp(2.6rem,5vw,4.2rem)] leading-[1.02]">
+            <Lines lines={["Recoge en la tienda", <em key="o" className="text-rose-dark">o te lo llevamos.</em>]} />
+          </h2>
+          <p data-fade className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">Haz tu pedido desde el celular, escoge el día y la hora, y nosotros nos encargamos del resto.</p>
+        </div>
+        <div className="mt-14">
+          <OrderWays />
+        </div>
       </div>
     </section>
   );
@@ -257,6 +277,7 @@ export function Site({ variant }: { variant: Variant }) {
         <Occasions />
         <Story />
         <Ramos />
+        <Entrega />
         <Colecciones />
         <Perfumes />
         <Pedido />
